@@ -16,7 +16,7 @@ public class SimpleSort {
         ArrayList<Integer> temp = new ArrayList<Integer>();
 
         // Read file contents into array
-        File inputFile = new File("homework1/problem3.5test.txt");
+        File inputFile = new File("homework1/problem3.5.txt");
 
         try (Scanner fileReader = new Scanner(inputFile)) {
 
@@ -36,11 +36,13 @@ public class SimpleSort {
             array[i] = temp.get(i);
         }
 
-        int[] sortedArray = selectionSort(array);
 
-        for (int i = 0; i < sortedArray.length; i++) {
-            System.out.println(sortedArray[i]);
-        }
+        long startingTime = System.nanoTime();
+        int[] sortedArray = selectionSort(array);
+        long endingTime = System.nanoTime();
+        long totalTime = endingTime - startingTime;
+
+        System.out.println("Algorithm took: " + (totalTime / 1_000_000.0) + "ms");
     }
 
     private static int[] selectionSort(int[] array) {

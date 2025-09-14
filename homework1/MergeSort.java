@@ -16,7 +16,7 @@ public class MergeSort {
         ArrayList<Integer> temp = new ArrayList<Integer>();
 
         // Read file contents into array
-        File inputFile = new File("homework1/problem3.5test.txt");
+        File inputFile = new File("homework1/reverse_50000.txt");
 
         try (Scanner fileReader = new Scanner(inputFile)) {
 
@@ -36,17 +36,68 @@ public class MergeSort {
             array[i] = temp.get(i);
         }
 
+        long startingTime = System.nanoTime();
         int[] sortedArray = mergeSort(array);
+        long endingTime = System.nanoTime();
+        long totalTime = endingTime - startingTime;
 
-        for (int i = 0; i < sortedArray.length; i++) {
-            System.out.println(sortedArray[i]);
-        }
+        System.out.println("Algorithm took: " + (totalTime / 1_000_000.0) + "ms");
     }
 
     private static int[] mergeSort(int[] array) {
 
-        int[] sortedArray = {0};
+        int[] sortedArray = new int[array.length];
 
+        // Check if array only has one element
+        if (array.length <= 1) {
+            
+            return array;
+        }
+
+        else {
+
+            int len = array.length;
+            int middle = len/2;
+
+            int[] left = new int[middle];
+            int[] right = new int[len-middle];
+
+            // Fill left and right arrays with their values
+            for(int i = 0; i < middle; i++) {
+
+                left[i] = array[i];
+            }
+
+            for(int i = middle; i < len; i++) {
+
+                right[i-middle] = array[i];
+            }
+
+            left = mergeSort(left);
+            right = mergeSort(right);
+
+            // Indexes to track values throughout merge step
+            int i=0, j=0, k=0;
+            while(i < right.length && j < left.length) {
+
+                if (right[i] <= left[j]) {
+                    sortedArray[k++] = right[i++];
+                }
+
+                else {
+                    sortedArray[k++] = left[j++];
+                }
+            }
+
+            // Fill sorted array with remaining elements
+            while (i < right.length) {
+                sortedArray[k++] = right[i++];
+            }
+
+            while (j < left.length) {
+                sortedArray[k++] = left[j++];
+            }
+        }
 
         return sortedArray;
     }
