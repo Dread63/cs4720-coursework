@@ -16,7 +16,7 @@ public class MergeSort {
         ArrayList<Integer> temp = new ArrayList<Integer>();
 
         // Read file contents into array
-        File inputFile = new File("homework1/reverse_50000.txt");
+        File inputFile = new File("random_numbers.txt");
 
         try (Scanner fileReader = new Scanner(inputFile)) {
 
@@ -40,6 +40,10 @@ public class MergeSort {
         int[] sortedArray = mergeSort(array);
         long endingTime = System.nanoTime();
         long totalTime = endingTime - startingTime;
+
+        for(int i = 0; i < sortedArray.length; i++) {
+            System.out.println(sortedArray[i]);
+        }
 
         System.out.println("Algorithm took: " + (totalTime / 1_000_000.0) + "ms");
     }

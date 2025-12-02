@@ -16,7 +16,7 @@ public class SimpleSort {
         ArrayList<Integer> temp = new ArrayList<Integer>();
 
         // Read file contents into array
-        File inputFile = new File("homework1/problem3.5.txt");
+        File inputFile = new File("homework1/problem3.5test.txt");
 
         try (Scanner fileReader = new Scanner(inputFile)) {
 
