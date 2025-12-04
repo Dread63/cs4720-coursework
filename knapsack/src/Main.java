@@ -155,8 +155,6 @@ public class Main {
     // Used to print final 2D array created by knapsack algorithm
     private static void print2DArray(int[][] A) {
 
-
-
         // Get the length of the largest integer in the matrix to format the printed output uniform
         int arrayLength = A.length;
         int arrayHeight = A[0].length;
